@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=640, user-scalable=no">
+  <title>html</title>
+  <link rel="stylesheet" type="text/css" href="./src/css/bootstrap-4.0.0.min.css">
+  <link rel="stylesheet" type="text/css" href="./src/css/wxdc.css">
+  <script type="text/javascript" src="./src/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="./src/js/bootstrap-4.0.0.min.js"></script>
+</head>
+<body>
+
+  <div id="main"></div>
+
+<script src="./dist/build.js"></script>
+
+<script type="text/javascript">
+function isIE() { //ie? 
+	if (!!window.ActiveXObject || "ActiveXObject" in window){
+		var polyfill=document.createElement("script");
+		polyfill.type="text/javascript";
+		polyfill.src="./dist/polyfill.min.js";
+		document.head.appendChild(polyfill);
+	}
+}
+$(function(){
+	//isIE();
+	$("#header ul>li:nth-of-type(1) a").addClass("active");
+	$("#header ul li").on("click",function(){
+		if($(this).children().hasClass("active")){
+			return;
+		}else{
+			$(this).children().addClass("active").end().siblings().children().removeClass("active");
+		}
+	});
+});
+</script>
+</body>
+</html>

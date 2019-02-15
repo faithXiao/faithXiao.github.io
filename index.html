@@ -1,40 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=640, user-scalable=no">
-  <title>html</title>
-  <link rel="stylesheet" type="text/css" href="./src/css/bootstrap-4.0.0.min.css">
-  <link rel="stylesheet" type="text/css" href="./src/css/wxdc.css">
-  <script type="text/javascript" src="./src/js/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="./src/js/bootstrap-4.0.0.min.js"></script>
+	<title></title>
+	<link href="bootstrap-4.0.0.min.css" rel="stylesheet">
 </head>
-<body>
-
-  <div id="main"></div>
-
-<script src="./dist/build.js"></script>
-
-<script type="text/javascript">
-function isIE() { //ie? 
-	if (!!window.ActiveXObject || "ActiveXObject" in window){
-		var polyfill=document.createElement("script");
-		polyfill.type="text/javascript";
-		polyfill.src="./dist/polyfill.min.js";
-		document.head.appendChild(polyfill);
-	}
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="bootstrap-4.0.0.min.js"></script>
+<style type="text/css">
+*{
+	padding: 0px;
+	margin: 0px;
 }
-$(function(){
-	//isIE();
-	$("#header ul>li:nth-of-type(1) a").addClass("active");
-	$("#header ul li").on("click",function(){
-		if($(this).children().hasClass("active")){
-			return;
-		}else{
-			$(this).children().addClass("active").end().siblings().children().removeClass("active");
-		}
+body{
+
+}
+.container-fluid{
+	overflow: hidden;
+	position: relative;
+}
+.app{
+	position: absolute;
+	font-size: 16px;
+  color: red;
+	width: 30px;
+	height: 30px;
+}
+</style>
+<body>
+<div class="container-fluid">
+
+</div>
+
+<script>
+var width=document.body.clientWidth;
+var height=window.innerHeight;
+document.getElementsByClassName('container-fluid')[0].style.height=height+'px';
+console.log(height);
+function create_snow(){
+	var left_start=Math.random()*width+'px';
+	var left_end=Math.random()*width+'px';
+	var snow=$("<div class='app'><span class='glyphicon glyphicon-heart'></span></div>");
+	$(".container-fluid").append(snow);
+	snow.css('left',left_start);
+	$(".container-fluid div").each(function(){
+		$(this).animate({
+			left:left_end,
+			top:height,
+		},10000,function(){
+			$(this).remove();
+		});
 	});
+}
+
+$(function(){
+	var flag=true;
+  var time=setInterval('create_snow()',200);
+  $("body").on('click',function(){
+  	if(flag==true){
+  		clearInterval(time);
+  		flag=false;
+  	}else{
+  		time=setInterval('create_snow()',200);
+  		flag=true;
+  	}
+  });
 });
 </script>
 </body>

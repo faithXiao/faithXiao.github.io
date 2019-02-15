@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap 101 Template</title>
+	<link href="bootstrap-4.0.0.min.css" rel="stylesheet">
+	<link href="css.css" rel="stylesheet">
+	<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="popper.min.js"></script>
+  <script type="text/javascript" src="bootstrap-4.0.0.min.js"></script>
+  <script type="text/javascript">
+		$(function(){
+			$("[data-toggle='tooltip']").tooltip();
+			$("[data-toggle='popover']").popover();
+			//$("#navbar-modal").modal('show');
+			/*$(".carousel").carousel({
+				interval:4500,
+			});*/
+			$("#navbar-modal").modal({
+				show: true,
+			})
+		});
+  </script>
+</head>
+<body data-spy="scroll" data-target="#collapse" data-offset="10" style="position: relative;">
+	<div id="collapse" class="d-none d-sm-none d-md-block">
+		<a href="#demo" data-toggle="collapse">#</a>
+		<div class="collapse" id="demo">
+			<ul class="navbar-nav collapse" id="scroll">
+				<li class="nav-item"><a class="nav-link" href="#navbar">堆叠导航栏</a></li>
+				<li class="nav-item"><a class="nav-link" href="#nav">基本导航栏</a></li>
+				<li class="nav-item"><a class="nav-link" href="#tab">选项卡</a></li>
+				<li class="nav-item"><a class="nav-link" href="#collapse-list">折叠栏</a></li>
+				<li class="nav-item"><a class="nav-link" href="#grid">栅格</a></li>
+				<li class="nav-item"><a class="nav-link" href="#alert">提示框</a></li>
+				<li class="nav-item"><a class="nav-link" href="#card">卡片</a></li>
+				<li class="nav-item"><a class="nav-link" href="#banner">轮播图</a></li>
+				<li class="nav-item"><a class="nav-link" href="#btn">按钮组</a></li>
+				<li class="nav-item"><a class="nav-link" href="#badge">徽章</a></li>
+				<li class="nav-item"><a class="nav-link" href="#progress">进度条</a></li>
+				<li class="nav-item"><a class="nav-link" href="#list">列表组</a></li>
+				<li class="nav-item"><a class="nav-link" href="#form">表单</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div id="content">
+			<div id="navbar">
+				<h3>堆叠导航栏：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+					<a class="navbar-brand" href="#">Navbar</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="collapsibleNavbar">
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div id="nav">
+				<h3>基本导航栏：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a href="javascript:void(0)" class="nav-link active">page 1</a></li>
+					<li class="nav-item"><a href="javascript:void(0)" class="nav-link">page 2</a></li>
+					<li class="nav-item"><a href="javascript:void(0)" class="nav-link">page 3</a></li>
+				</ul>
+			</div>
+			<div id="tab">
+				<h3>选项卡：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" href="#page1" data-toggle="tab">page 1</a></li>
+					<li class="nav-item"><a class="nav-link" href="#page2" data-toggle="tab">page 2</a></li>
+					<li class="nav-item"><a class="nav-link" href="#page3" data-toggle="tab">page 3</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="page1">
+						<p>page 1</p>
+					</div>
+					<div class="tab-pane fade" id="page2">
+						<p>page 2</p>
+					</div>
+					<div class="tab-pane fade" id="page3">
+						<p>page 3</p>
+					</div>
+				</div>
+			</div>
+			<div id="collapse-list">
+				<h3>折叠栏：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<p><a href="#collapse-one" data-toggle="collapse"># one</a></p>
+				<div class="collapse" id="collapse-one">
+					<p class="text-success">page one</p>
+				</div>
+				<p><a href="#collapse-two" data-toggle="collapse"># two</a></p>
+				<div class="collapse" id="collapse-two">
+					<p class="text-success">page two</p>
+				</div>
+				<p><a href="#collapse-three" data-toggle="collapse"># three</a></p>
+				<div class="collapse" id="collapse-three">
+					<p class="text-success">page three</p>
+				</div>
+			</div>
+			<div id="grid">
+				<h3>栅格：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<div class="row">
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+					<div class="col-1 col-sm-2 col-md-3 col-lg-4">1</div>
+				</div>
+			</div>
+			<div id="alert">
+				<h3>提示框：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<div class="alert alert-success alert-dismissible fade show">
+					<strong>成功！</strong>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+				<div class="alert alert-warning alert-dismissible fade show">
+					<strong>警告！</strong>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+				<div class="alert alert-danger alert-dismissible fade show">
+					<strong>危险！</strong>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+			</div>
+			<div id="card" class="clearfix">
+				<h3>卡片：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<div class="card float-left">
+					<img src="images/img1.jpg" class="card-img-top img-fluid" alt="#">
+					<div class="card-body">
+						<h5 class="card-title">card title</h5>
+						<p class="card-text">card text</p>
+						<a href="#" class="btn btn-primary">go</a>
+					</div>
+				</div>
+				<div class="card float-left">
+					<img src="images/img1.jpg" class="card-img-top img-fluid" alt="#">
+					<div class="card-body">
+						<h5 class="card-title">card title</h5>
+						<p class="card-text">card text</p>
+						<a href="#" class="btn btn-primary">go</a>
+					</div>
+				</div>
+				<div class="card float-left">
+					<img src="images/img1.jpg" class="card-img-top img-fluid" alt="#">
+					<div class="card-body">
+						<h5 class="card-title">card title</h5>
+						<p class="card-text">card text</p>
+						<a href="#" class="btn btn-primary">go</a>
+					</div>
+				</div>
+			</div>
+			<div id="banner">
+				<h3>轮播图：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/img1.jpg" class="img-fluid" alt="#">
+						</div>
+						<div class="carousel-item">
+							<img src="images/img1.jpg" class="img-fluid d-block" alt="#">
+						</div>
+						<div class="carousel-item">
+							<img src="images/img1.jpg" class="img-fluid d-block" alt="#">
+						</div>
+					</div>
+					<a href="#carousel" class="carousel-control-prev" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="#carousel" class="carousel-control-next" role="button" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+					<ul class="carousel-indicators">
+						<li class="active" data-target="#carousel" data-slide-to="0">1</li>
+						<li data-target="#carousel" data-slide-to="1">2</li>
+						<li data-target="#carousel" data-slide-to="2">3</li>
+					</ul>
+				</div>
+			</div>
+			<div id="btn">
+				<h3>按钮组：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<div class="btn-type">
+					<button type="button" class="btn">基本按钮</button>
+					<button type="button" class="btn btn-outline-primary">主要按钮</button>
+					<button type="button" class="btn btn-outline-secondary">次要按钮</button>
+					<button type="button" class="btn btn-outline-success">成功按钮</button>
+					<button type="button" class="btn btn-outline-info">信息</button>
+					<button type="button" class="btn btn-warning">警告</button>
+					<button type="button" class="btn btn-danger">危险</button>
+					<button type="button" class="btn btn-dark">黑色</button>
+					<button type="button" class="btn btn-light">浅色</button>
+					<button type="button" class="btn btn-link">链接</button>
+					<a tabindex="0" class="btn btn-success" data-toggle="popover" data-container="body" data-placement="right" data-content="右边提示">666</a>
+				</div>
+				<div class="btn-size">
+					<button type="button" class="btn btn-lg">大号按钮</button>
+					<button type="button" class="btn">默认按钮</button>
+					<button type="button" class="btn btn-sm">小号按钮</button>
+				</div>
+				<div class="btn_block">
+					<button type="button" class="btn btn-block btn-outline-primary" data-toggle="tooltip" data-placement="right" title="右边提示">块级按钮</button>
+					<button type="button" class="btn btn-block btn-outline-primary" data-toggle="tooltip" data-placement="left" title="左边提示">块级按钮</button>
+					<button type="button" class="btn btn-block btn-outline-primary" data-toggle="tooltip" data-placement="bottom" title="下边提示">块级按钮</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary">按钮组</button>
+					<button type="button" class="btn btn-primary">按钮组</button>
+					<button type="button" class="btn btn-primary">按钮组</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">下拉菜单</button>
+					<ul class="dropdown-menu">
+						<li class="dropdown-item">1</li>
+						<li class="dropdown-item">2</li>
+						<li class="dropdown-item">3</li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary">分裂式下拉菜单</button>
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"></button>
+					<ul class="dropdown-menu">
+						<li class="dropdown-item">1</li>
+						<li class="dropdown-item">2</li>
+						<li class="dropdown-item">3</li>
+					</ul>
+				</div>
+			</div>
+			<div id="badge">
+				<h3>徽章：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<h5>徽章<span class="badge badge-secondary">new</span></h5>
+				<button type="button" class="btn btn-primary btn-lg">
+					主要 <span class="badge badge-pill badge-light">1</span>
+				</button>
+				<button type="button" class="btn btn-secondary btn-md">
+					次要 <span class="badge badge-pill badge-light">2</span>
+				</button>
+				<button type="button" class="btn btn-success btn-sm">
+					成功 <span class="badge badge-pill badge-light">3</span>
+				</button>
+			</div>
+			<div id="progress">
+				<h3>进度条：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
+					<span><strong>20%</strong></span>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated bg-info"></div>
+					<span><strong>40%</strong></span>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"></div>
+					<span><strong>60%</strong></span>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"></div>
+					<span><strong>80%</strong></span>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"></div>
+					<span><strong>100%</strong></span>
+				</div>
+			</div>
+			<div id="list">
+				<h3>列表组：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">1</li>
+					<li class="list-group-item">2</li>
+					<li class="list-group-item">3</li>
+				</ul>
+				<div class="list-group">
+					<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">1<span class="badge badge-info badge-pill">1</span></a>
+					<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">2<span class="badge badge-success badge-pill">2</span></a>
+					<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">3<span class="badge badge-warning badge-pill">3</span></a>
+				</div>
+			</div>
+			<div id="form">
+				<h3>表单：<a href="javascript:void(0)" data-toggle="modal" data-target="#navbar-modal">#</a></h3>
+				<form>
+					<div class="form-group">
+						<label for="user" class="float-left">用户名：</label>
+						<input type="text" class="form-control float-left" id="user" placeholder="User.." required="required">
+						<div class="clearfix"></div>
+						<span class="form-text text-muted">请输入用户名</span>
+					</div>
+					<div class="form-group">
+						<label for="password" class="float-left">密  码：</label>
+						<input type="password" class="form-control float-left" id="password" placeholder="Password.." required="required">
+						<div class="clearfix"></div>
+						<span class="form-text text-muted">请输入密码</span>
+					</div>
+					<div class="form-group">
+						<label for="textarea" class="float-left">文本域：</label>
+						<textarea class="form-control float-left" id="textarea" placeholder="..." rows="10" cols="30" required="required"></textarea>
+						<div class="clearfix"></div>
+					</div>
+					<div id="checkbox">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="checkbox1" required>
+							<label class="custom-control-label" for="checkbox1">Option 1</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="checkbox2">
+							<label class="custom-control-label" for="checkbox2">Option 1</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="checkbox3">
+							<label class="custom-control-label" for="checkbox3">Option 1</label>
+						</div>
+					</div>
+					<div id="radio">
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input" id="radio1" name="#" required>
+							<label class="custom-control-label" for="radio1">Option 1</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input" id="radio2" name="#">
+							<label for="radio2" class="custom-control-label">Option 2</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input" id="radio3" name="#">
+							<label for="radio3" class="custom-control-label">Option 3</label>
+						</div>
+					</div>
+					<div class="form-group" id="select">
+						<label for="select1">单选下拉菜单：</label>
+						<select class="custom-select" id="select1">
+							<option>--请选择--</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+						<div class="clearfix"></div>
+					</div>
+					<button type="submit" class="btn btn-primary">确定</button>
+				</form>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="modal fade" id="navbar-modal" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">模态框</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p class="text-success">模态框</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,261 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head lang="en">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>test1</title>
-	<style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.content{
-		width:100%;
-		min-width: 1100px;
-		margin-bottom: 16px;
-	}
-	#main{
-	  width:auto;
-	  margin-left: 300px;
-	  margin-right: 300px;
-	  background-color: #ff222247
-	}
-	#main p{
-		text-align: center;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
-	#left{
-		float:left;
-		width:300px;
-		background-color: #ffd100;
-	}
-	#right{
-		float: right;
-		width: 300px;
-		background-color: #ffd100;
-	}
-	#absolute-level,#absolute-vertical,#float{
-		width: 30%;
-		float: left;
-	}
-	.content::after{
-		display: block;
-		clear: both;
-		content: ''
-	}
-	h3{
-		text-align: center;
-	}
-	.parent{
-		position: relative;
-		margin: 0 auto;
-		width: 300px;
-		height: 300px;
-		background-color: #ffd100;
-	}
-	#absolute-level .absolute{
-		position: absolute;
-	  width: 150px;
-		height: 150px;
-		background-color: #ff2222;
-		 /*绝对定位水平居中*/
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-
-		/*绝对定位水平居中*/
-		/*left: 50%;
-		right: 50%;
-		margin-left: -75px;
-		margin-right: -75px;*/
-	}
-	#absolute-vertical .absolute{
-		position: absolute;
-	  width: 150px;
-		height: 150px;
-		background-color: #ff2222;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: auto;
-	}
-	.float{
-		position: absolute;/*需要设置为绝对定位元素，再根据绝对定位元素进行居中布局*/
-		left: 0;
-		right: 0;
-		margin: auto;
-		float: left;
-		width: 150px;
-		height: 150px;
-		background-color: #ff2222;
-	}
-	.input{
-		box-sizing: border-box;
-		height: 30px;
-	}
-	.btn{
-		display: inline-block;
-		box-sizing: border-box;
-		background-color: #01a1ff85;
-		border: none;
-		width: 50px;
-		height: 30px;
-	}
-	#ul{
-		padding-left: 20px;
-	}
-	#ul li{
-		width: 5%;
-		float: left;
-	}
-	#ul:after{
-		display: block;
-		content: '';
-		clear: both;
-	}
-</style>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=640, user-scalable=no">
+  <title>html</title>
+  <link rel="stylesheet" type="text/css" href="./src/css/bootstrap-4.0.0.min.css">
+  <link rel="stylesheet" type="text/css" href="./src/css/wxdc.css">
+  <script type="text/javascript" src="./src/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="./src/js/bootstrap-4.0.0.min.js"></script>
 </head>
 <body>
-	<div class="content">
-		<h3>左右定宽，中间自适应宽：</h3>
-		<div id="left">
-			<div class="inner">this is left sidebar content</div>
-		</div>
-		<div id="right">
-			<div class="inner">this is right siderbar content</div>
-		</div>
-		<div id="main">
-			<p>胜利女神在微笑</p>
-		</div>
-	</div>
-	<div class="content">
-		<div id="absolute-level">
-			<h3>绝对定位元素水平居中：</h3>
-			<div class="parent">
-				<div class="absolute"></div>
-			</div>
-		</div>
-		<div id="absolute-vertical">
-			<h3>绝对定位元素水平垂直居中：</h3>
-			<div class="parent">
-				<div class="absolute"></div>
-			</div>
-		</div>
-		<div id="float">
-			<h3>浮动元素水平居中：</h3>
-			<div class="parent">
-				<div class="float"></div>
-			</div>
-		</div>
-	</div>
-	<div class="content">
-		<h4>仿jq hasClass()写法：</h4>
-		<input type="text" name="className" class="input" id="input">
-		<button class="btn btn-primary" onclick="hasClass(this)">查看</button>
-		<span>判断按钮是否含有某个class属性值，已含有.btn .btn-primary</span>
-	</div>
-	<div class="content">
-		<h4>查看url的参数：</h4>
-		<button class="btn btn-primary" onclick="showUrlKeyValue()">查看</button>
-		<p id="urlKeyValue"></p>
-	</div>
-	<div class="content">
-		<form name="form1">
-			<input type="text" name="input1">
-			<input type="text" name="input2">
-			<input type="radio" name="input3" value="1">
-			<input type="radio" name="input3" value="2">
-			<button type="button" onclick="showInputValue()">确定</button>
-		</form>
-	</div>
-	<div class="content">
-		<ul id="ul">
-			<li>666</li>
-			<li>777</li>
-			<li>888</li>
-		</ul>
-	</div>
-	<div style="width: 300px; height: 300px; border: 10px solid black; padding: 30px; margin: 30px; background-color: yellow"></div>
-</body>
-<script type="text/javascript">
-	var x = 1;
-  var obj = {
-    x: 2,
-    y: function(){
-      console.log(this.x);
-    }
-  };
-  setTimeout(obj.y,1000);
-  setTimeout(function(){
-  	obj.y();
-  },1000);
-function hasClass(element){
-  var classStr=element.className;
-  if(classStr==""){
-  	alert("该元素class属性值为空");
-  }else{
-  	var className=document.getElementById('input').value;
-  	var classArray=classStr.split(" ").filter(function(classname){return classname!="";});//过滤掉含有空格所导致数组元素为空的项
-  	if(classArray.length==0){
-  		alert("该元素class属性值为空");
-  	}else{
-  		var flag=false;
-  		for(let i=0;i<classArray.length;i++){
-  			if(classArray[i]==className){
-  				flag=true;
-  				break;
-  			}else{
-  				flag=false;
-  			}
-  		}
-  		if(flag){
-  			alert("该元素class属性值存在："+className);
-  		}else{
-  			alert("该元素class属性值不存在："+className);
-  		}
-  	}
-  }
-}
-function showUrlKeyValue(){
-	var url=location.search;
-	if(url.indexOf("?")==-1){
-		alert("url无参数");
-	}else{
-		var urlKeyValue=new Array();  //存放所有的参数key-value值对象
-		var urlStr=url.substr(1);  //返回？后面的字符串
-		var keyValueArray=urlStr.split("&");  //把用&分开的所有参数key-value值存到数组
-		for (let i = 0; i < keyValueArray.length; i++) {  //遍历参数key-value数组
-			var keyValue=keyValueArray[i].split("=");  //提取参数key-value之间的=形成含两个元素的数组 0=>key 1=>value
-			urlKeyValue.push({ 'key' : keyValue[0], 'value' : keyValue[1] });  //以对象的形式存入key-value数组
-		}
-		for (let i = 0; i < urlKeyValue.length; i++) {
-			document.getElementById('urlKeyValue').innerHTML+="参数"+(i+1)+"："+urlKeyValue[i].key+"，参数值："+urlKeyValue[i].value+"<br/>";
-		}
-	}
-}
-function showInputValue(){
-	var input1=document.getElementsByName('input1')[0].value;  //getElementsByName()方法返回数组形式，必须以数组+下标获取value
-	var input2=document.forms['form1'].input2.value;
-	var radio=document.form1.input3;
-	var input3;
-	for(let i=0; i<radio.length; i++){
-		if(radio[i].checked){
-			input3=radio[i].value;
-			break;
-		}
-	}
-	alert(input1+" "+input2+" "+input3);
-}
-document.getElementById('main').onclick=function(){
-	if(this.currentStyle){
-		alert(this.currentStyle.height);
-	}else{
-		alert(getComputedStyle(this,null)['height']);
-	}
-}
 
+  <div id="main"></div>
+
+<script src="./dist/build.js"></script>
+
+<script type="text/javascript">
+function isIE() { //ie? 
+	if (!!window.ActiveXObject || "ActiveXObject" in window){
+		var polyfill=document.createElement("script");
+		polyfill.type="text/javascript";
+		polyfill.src="./dist/polyfill.min.js";
+		document.head.appendChild(polyfill);
+	}
+}
+$(function(){
+	//isIE();
+	$("#header ul>li:nth-of-type(1) a").addClass("active");
+	$("#header ul li").on("click",function(){
+		if($(this).children().hasClass("active")){
+			return;
+		}else{
+			$(this).children().addClass("active").end().siblings().children().removeClass("active");
+		}
+	});
+});
 </script>
+</body>
 </html>

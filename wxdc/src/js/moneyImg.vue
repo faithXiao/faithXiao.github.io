@@ -7,7 +7,7 @@
           <button type="button" class="close" data-dismiss="modal" v-on:click="back">&times;</button>
         </div>
         <div class="modal-body">
-          <img v-bind:src="showimg" class="img-fluid" alt="#">
+          <img v-bind:src="showimg" class="img-fluid" alt="#" id="img">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="back">返回重选</button>
@@ -38,9 +38,12 @@
       }
     },
     mounted:function(){
-      $("#money_img").modal({
-        show:true
-      })
+      document.getElementById('img').onload=function(){
+        console.log('666');
+        $("#money_img").modal({
+          show:true
+        });
+      };
     }
   }
 </script>

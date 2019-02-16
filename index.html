@@ -27,7 +27,7 @@ body{
 }
 </style>
 <body style="position: relative;">
-<audio controls autoplay loop="loop" id="music" style="display: block; position: absolute; left: 0; right: 0; bottom: 10%; margin: auto; width: 250px; z-index: 10">
+<audio controls autoplay loop id="music" style="display: block; position: absolute; left: 0; right: 0; bottom: 30%; margin: auto; width: 250px; z-index: 10">
   <source src="Happy-Birthday.mp3" type="audio/mpeg">
 </audio>
 <div class="container-fluid">
@@ -56,7 +56,9 @@ function create_snow(){
 		});
 	});
 }
-
+window.onload=function(){
+	document.getElementById('music').play();
+}
 $(function(){
 	var flag=true;
   var time=setInterval('create_snow()',150);

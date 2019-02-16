@@ -3,14 +3,15 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;长按识别付款二维码即可完成支付</h3>
+          <h3 class="modal-title">长按识别付款二维码即可完成支付</h3>
+          <button type="button" class="close" data-dismiss="modal" v-on:click="back">&times;</button>
         </div>
         <div class="modal-body">
-          <img v-bind:src="imgSrc" class="img-fluid" alt="#">
+          <img v-bind:src="showimg" class="img-fluid" alt="#">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="back">返回</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="showOrder">已完成支付</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="back">返回重选</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="back">已完成支付</button>
         </div>
       </div>
     </div>
@@ -19,26 +20,22 @@
 
 <script type="text/javascript">
   export default {
-    props:['desk','money'],
+    props:['desknum','food_money'],
     data () {
       return {
-        //imgSrc:'',
-        imgSrc: require('../image/money.png')
+        imgsrc:'',
       }
     },
     methods:{
       back:function(){
-        this.$emit('clear');
-      },
-      showOrder:function(){
-        this.$emit('showOrder');
+        this.$emit('hiddenimg');
       }
     },
     computed:{
-      /*showimg:function(){
-        this.imgSrc='./dist/'+this.desk+'_'+this.money+'.png';
-        return this.imgSrc
-      }*/
+      showimg:function(){
+        this.imgsrc='./dist/'+this.desknum+'_'+this.food_money+'.png';
+        return this.imgsrc
+      }
     },
     mounted:function(){
       $("#money_img").modal({

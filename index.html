@@ -26,8 +26,10 @@ body{
 	height: 30px;
 }
 </style>
-<body>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=427610321&auto=1&height=66"></iframe>
+<body style="position: relative;">
+<audio controls autoplay loop="loop" id="music" style="display: block; position: absolute; left: 0; right: 0; bottom: 10%; margin: auto; width: 250px; z-index: 10">
+  <source src="Happy-Birthday.mp3" type="audio/mpeg">
+</audio>
 <div class="container-fluid">
 
 </div>
@@ -36,7 +38,9 @@ body{
 var width=document.body.clientWidth;
 var height=window.innerHeight;
 document.getElementsByClassName('container-fluid')[0].style.height=height+'px';
-console.log(height);
+document.getElementById('music').onclick=function(e){
+	e.stopPropagation();
+};
 function create_snow(){
 	var left_start=Math.random()*width+'px';
 	var left_end=Math.random()*width+'px';
@@ -55,13 +59,13 @@ function create_snow(){
 
 $(function(){
 	var flag=true;
-  var time=setInterval('create_snow()',200);
+  var time=setInterval('create_snow()',150);
   $("body").on('click',function(){
   	if(flag==true){
   		clearInterval(time);
   		flag=false;
   	}else{
-  		time=setInterval('create_snow()',200);
+  		time=setInterval('create_snow()',150);
   		flag=true;
   	}
   });

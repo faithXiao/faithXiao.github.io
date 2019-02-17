@@ -78,7 +78,8 @@ export default{
 				}
 		    this.$emit('showImg');
     		if(typeof(Storage)!=="undefined"){
-    			if(localStorage.order==undefined||localStorage.order==""||localStorage.order==null){
+    			var time=new Date().getTime();
+    			if(localStorage.order==undefined||localStorage.order==""||localStorage.order==null||localStorage.time==undefined||localStorage.time==""||localStorage.time==null||time>localStorage.time){
     				localStorage.order=JSON.stringify(order);
     			}else{
     				localStorage.order+=";"+JSON.stringify(order);

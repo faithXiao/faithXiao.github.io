@@ -142,7 +142,8 @@
 	  				this.startX=this.endX;
 	  				return;
 	  			}else{
-	  			  $("#content").css("left",(-this.index*640+this.endX-this.startX)+'px');
+	  			  $("#content").css("transform",'translateX('+(this.endX-this.startX-this.index*640)+'px)');
+	  			  //
 	  			}
 	  		}
 	  	},
@@ -160,14 +161,11 @@
 	  			}else if(distanceX<=-160&&this.index<3){
 	  				this.index++;  //左滑
 	  			}
-	  			var _this=this;
-	  			$("#content").animate(  //滑动动画
-	  				{ left: -this.index*640+'px' },
-	  				150,
-	  				function(){
-	  				  _this.componentState[_this.index].show=true;  //动画执行完后加载异步组件
-	  				}
-	  			);
+	  			$("#content").css({
+	  				'transform': 'translateX('+(-this.index*640)+'px)',
+	  				'transition': 'transform 0.15s linear' 
+	  			})
+	  			this.componentState[this.index].show=true;
 	  		}
 	  		this.slideState="";  //清空滑动状态
 	  	},
@@ -213,14 +211,11 @@
 	  	},
 	  	turn:function(index){  //组件切换
   		  this.index=index;
-  		  var _this=this;
-	 			$("#content").animate(  //滑动动画
-  				{ left: -this.index*640+'px' },
-  				150,
-  				function(){
-  				  _this.componentState[_this.index].show=true;
-  				}
-  			);
+  			$("#content").css({
+  				'transform': 'translateX('+(-this.index*640)+'px)',
+  				'transition': 'transform 0.15s linear' 
+  			})
+  			this.componentState[this.index].show=true;
 	  	},
 	  	showImg:function () {  //图片金额二维码组件显示隐藏
 				this.showMoneyImg = !this.showMoneyImg;

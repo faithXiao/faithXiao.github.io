@@ -87,6 +87,7 @@
 	      startDate: 0,  //触屏按下时间戳
 	      endDate: 0,  //触屏抬起时间戳
 	      slideState: '',  //滑动状态
+	      globalID: null,
 	      componentState: [  //组件信息
 	      	{
 	      		name: 'food-component',  //组件名
@@ -112,66 +113,6 @@
 		  }
 	  },
 	  methods:{
-	  	touchstart:function(event){
-	  		var touch=event.targetTouches[0];
-	  		this.endX=0;
-	  		this.endY=0;
-	  		this.startX=touch.pageX;
-	  		this.startY=touch.pageY;
-	  		this.startDate=+new Date();
-	  	},
-	  	touchmove:function(event){
-	  		var touch=event.targetTouches[0];
-	  		this.endX=touch.pageX;
-	  		this.endY=touch.pageY;
-	  		if(Math.abs(this.endY-this.startY)>Math.abs(this.endX-this.startX)){  //垂直距离大于水平距离
-	  			if(this.slideState==""){  //防止先垂直再水平滑动出现紊乱，只能出现单向滑动
-	  				this.slideState="noSlide";  //禁止左右滑动
-	  			}
-	  		}else{  //同理
-	  			if(this.slideState==""){
-	  				this.slideState="slide";
-	  			}
-	  		}
-	  		if(this.slideState=="slide"){
-	  			event.preventDefault();  //若允许左右滑动，则阻止浏览器默认垂直滚动事件
-	  			if(this.index==0&&(this.endX-this.startX)>0){  //第一页则不可右滑动
-	  				this.startX=this.endX;
-	  				return;
-	  			}else if(this.index==3&&(this.endX-this.startX)<0){  //最后一页则不可左滑动
-	  				this.startX=this.endX;
-	  				return;
-	  			}else{
-	  			  $("#content").css("transform",'translateX('+(this.endX-this.startX-this.index*640)+'px)');
-	  			  //
-	  			}
-	  		}
-	  	},
-	  	touchend:function(event){
-	  		this.endDate=+new Date();
-	  		var timeDifference=this.endDate-this.startDate;  //滑动时间间隔
-	  		var distanceX=this.endX-this.startX;  //滑动距离
-	  		if(this.slideState=="slide"){
-	  			if(timeDifference<=250&&distanceX>60&&this.index>0){  //时间间隔小于250ms 距离大于60
-	  				this.index--;  //右滑
-	  			}else if(timeDifference<=250&&distanceX<-60&&this.index<3){
-	  				this.index++;  //左滑
-	  			}else if(distanceX>=160&&this.index>0){  //距离大于160
-	  				this.index--;  //右滑
-	  			}else if(distanceX<=-160&&this.index<3){
-	  				this.index++;  //左滑
-	  			}
-	  			$("#content").css({
-	  				'transform': 'translateX('+(-this.index*640)+'px)',
-	  				'transition': 'transform 0.15s linear' 
-	  			})
-	  			this.componentState[this.index].show=true;
-	  		}
-	  		this.slideState="";  //清空滑动状态
-	  	},
-	  	load:function(){  //异步组件加载完后隐藏loading状态组件
-	  		this.componentState[this.index].loading=false;
-	  	},
 	  	add:function(name,num,price){
 	  		this.money=0;
 	  		if(this.orderInfo.length==0){
@@ -209,13 +150,83 @@
 	  			this.money+=this.orderInfo[i].food_num*this.orderInfo[i].food_price
 	  		}
 	  	},
+	  	touchstart:function(event){
+	  		var touch=event.targetTouches[0];
+	  		this.endX=0;
+	  		this.endY=0;
+	  		this.startX=touch.pageX;
+	  		this.startY=touch.pageY;
+	  		this.startDate=+new Date();
+	  	},
+	  	onTouchMove: function(event){
+	  		this.globalID=window.requestAnimationFrame( () => {
+          animation(event);
+        });
+	  	},
+	  	animation: function(event){
+	  		var touch=event.targetTouches[0];
+	  		this.endX=touch.pageX;
+	  		this.endY=touch.pageY;
+	  		if(Math.abs(this.endY-this.startY)>Math.abs(this.endX-this.startX)){  //垂直距离大于水平距离
+	  			if(this.slideState==""){  //防止先垂直再水平滑动出现紊乱，只能出现单向滑动
+	  				this.slideState="noSlide";  //禁止左右滑动
+	  			}
+	  		}else{  //同理
+	  			if(this.slideState==""){
+	  				this.slideState="slide";
+	  			}
+	  		}
+	  		if(this.slideState=="slide"){
+	  			event.preventDefault();  //若允许左右滑动，则阻止浏览器默认垂直滚动事件
+	  			if(this.index==0&&(this.endX-this.startX)>0){  //第一页则不可右滑动
+	  				this.startX=this.endX;
+	  				return;
+	  			}else if(this.index==3&&(this.endX-this.startX)<0){  //最后一页则不可左滑动
+	  				this.startX=this.endX;
+	  				return;
+	  			}else{
+	  			  $("#content").css("transform",'translateX('+(this.endX-this.startX-this.index*640)+'px)');  //触屏滑动
+	  			}
+	  		}
+	  	},
+	  	touchmove:function(event){
+	  		this.globalID=window.requestAnimationFrame( () => {
+          this.animation(event);
+        });
+	  	},
+	  	touchend:function(event){
+	  		cancelAnimationFrame(this.globalID);
+	  		this.endDate=+new Date();
+	  		var timeDifference=this.endDate-this.startDate;  //滑动时间间隔
+	  		var distanceX=this.endX-this.startX;  //滑动距离
+	  		if(this.slideState=="slide"){
+	  			if(timeDifference<=250&&distanceX>60&&this.index>0){  //时间间隔小于250ms 距离大于60
+	  				this.index--;  //右滑切换组件
+	  			}else if(timeDifference<=250&&distanceX<-60&&this.index<3){
+	  				this.index++;  //左滑切换组件
+	  			}else if(distanceX>=160&&this.index>0){  //距离大于160
+	  				this.index--;  //右滑
+	  			}else if(distanceX<=-160&&this.index<3){
+	  				this.index++;  //左滑
+	  			}
+	  			$("#content").css({  //滑动动画
+	  				'transform': 'translateX('+(-this.index*640)+'px)',
+	  				'transition': 'transform 0.15s linear' 
+	  			})
+	  			this.componentState[this.index].show=true;  //调用加载异步组件
+	  		}
+	  		this.slideState="";  //清空滑动状态
+	  	},
+	  	load:function(){  //异步组件加载完后隐藏loading状态组件
+	  		this.componentState[this.index].loading=false;
+	  	},
 	  	turn:function(index){  //组件切换
   		  this.index=index;
-  			$("#content").css({
+  			$("#content").css({  //滑动动画
   				'transform': 'translateX('+(-this.index*640)+'px)',
   				'transition': 'transform 0.15s linear' 
   			})
-  			this.componentState[this.index].show=true;
+  			this.componentState[this.index].show=true;  //调用加载异步组件
 	  	},
 	  	showImg:function () {  //图片金额二维码组件显示隐藏
 				this.showMoneyImg = !this.showMoneyImg;

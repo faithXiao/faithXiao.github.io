@@ -44,6 +44,7 @@
       $("#money_img").modal({
         show:true
       });
+      $("html,body,#index,#main").css('height','100%');
     }
   }
 </script>

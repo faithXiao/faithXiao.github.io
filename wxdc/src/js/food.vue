@@ -20,22 +20,14 @@
 
 <script type="text/javascript">
   export default{
-  	data(){
-  		return{
-        food_list: [
-          {img:require('../image/bean-curd.jpg'),name:'麻婆豆腐盖饭',price:8,num:0},
-          {img:require('../image/braised-eggplant.jpg'),name:'红烧茄子盖饭',price:8,num:0},
-          {img:require('../image/green-pepper-bacon.jpg'),name:'尖椒腊肉盖饭',price:8,num:0},
-          {img:require('../image/green-pepper-shredded-meat.jpg'),name:'青椒肉丝盖饭',price:8,num:0},
-          {img:require('../image/kung-pao-chicken.jpg'),name:'宫保鸡丁盖饭',price:8,num:0},
-          {img:require('../image/leek-egg.jpg'),name:'韭菜鸡蛋盖饭',price:8,num:0},
-          {img:require('../image/sour-hot-potato.png'),name:'酸辣土豆丝盖饭',price:8,num:0},
-          {img:require('../image/stew-pork.jpg'),name:'回锅肉盖饭',price:8,num:0},
-          {img:require('../image/tomato-agg.png'),name:'西红柿鸡蛋盖饭',price:8,num:0},
-        ],
-  		}
-  	},
-    mounted:function(){
+    props:['foodList'],
+    data(){
+      return{
+        food_list: null
+      }
+    },
+    created:function(){
+      this.food_list=this.foodList;
       this.$emit('load');
     },
     methods:{

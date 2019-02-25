@@ -4,7 +4,7 @@
 			<money-img-component v-on:clear="clear" v-on:showOrder="showOrder" v-bind:desk="desk" v-bind:money="money"></money-img-component>
 		</template>
 		<header-component v-on:turn="turn" v-on:showOrder="showOrder" v-bind:desk="desk" v-bind:index="index"></header-component>
-		<div id="content" v-on:touchstart="touchstart" v-on:touchmove="touchmove" v-on:touchend="touchend">
+		<div id="content" v-on:touchstart="touchstart" v-on:touchmove="touchmove" v-on:touchend="touchend" v-on:touchcancel="touchcancel">
 			<!--<keep-alive>
 			  <component v-bind:is="current" v-on:sendAdd="sendAdd" v-on:sendMinus="sendMinus"></component>
 			</keep-alive>-->
@@ -15,7 +15,7 @@
 				</template>
 				<template v-if="componentList.show">
 					<keep-alive>
-						<component v-bind:is="componentList.name" v-on:add="add" v-on:minus="minus" v-on:load="load"></component>
+						<food-component v-bind:foodList="componentList.foodList" v-on:add="add" v-on:minus="minus" v-on:load="load"></food-component>
 					</keep-alive>
 				</template>
 			</template>
@@ -31,6 +31,7 @@
 	import headerComponent from './header.vue'  //header组件
   import payComponent from './pay.vue'  //footer组件
   import loadingComponent from './loading.vue'  //loading组件
+  import foodComponent from './food.vue'
 
 	const moneyImgComponent = Vue.component(  //图片金额二维码组件
 		'moneyImgComponent', 
@@ -38,37 +39,11 @@
 	    require(['./moneyImg.vue'],resolve)
     }
   );
-  const foodComponent= Vue.component(
-  	'foodComponent',
-  	function(resolve) {
-  		require(['./food.vue'],resolve)
-  	}
-  );
-  const noodleComponent= Vue.component(
-  	'noodleComponent',
-  	function(resolve) {
-  		require(['./noodle.vue'],resolve)
-  	}
-  );
-  const conjeeComponent= Vue.component(
-  	'conjeeComponent',
-  	function(resolve) {
-  		require(['./conjee.vue'],resolve)
-  	}
-  );
-  const drinkComponent= Vue.component(
-  	'drinkComponent',
-  	function(resolve) {
-  		require(['./drink.vue'],resolve)
-  	}
-  );
 
 	export default{
 		components:{
 			headerComponent,
 			foodComponent,
-			conjeeComponent,
-			drinkComponent,
 			payComponent,
 			moneyImgComponent,
 			loadingComponent
@@ -90,26 +65,57 @@
 	      globalID: null,
 	      componentState: [  //组件信息
 	      	{
-	      		name: 'food-component',  //组件名
 	      		show: false,  //异步组件状态
-	      		loading: true  //loading组件状态
+	      		loading: true,  //loading组件状态
+	      		foodList: [
+		          {img:require('../image/bean-curd.jpg'),name:'麻婆豆腐盖饭',price:8,num:0},
+		          {img:require('../image/braised-eggplant.jpg'),name:'红烧茄子盖饭',price:8,num:0},
+		          {img:require('../image/green-pepper-bacon.jpg'),name:'尖椒腊肉盖饭',price:8,num:0},
+		          {img:require('../image/green-pepper-shredded-meat.jpg'),name:'青椒肉丝盖饭',price:8,num:0},
+		          {img:require('../image/kung-pao-chicken.jpg'),name:'宫保鸡丁盖饭',price:8,num:0},
+		          {img:require('../image/leek-egg.jpg'),name:'韭菜鸡蛋盖饭',price:8,num:0},
+		          {img:require('../image/sour-hot-potato.png'),name:'酸辣土豆丝盖饭',price:8,num:0},
+		          {img:require('../image/stew-pork.jpg'),name:'回锅肉盖饭',price:8,num:0},
+		          {img:require('../image/tomato-agg.png'),name:'西红柿鸡蛋盖饭',price:8,num:0},
+		        ],
 	      	},
 	      	{
-	      		name: 'noodle-component',
 	      		show: false,
-	      		loading: true
+	      		loading: true,
+	      		foodList:[
+		          {img:require('../image/Lanzhou-beef-noodles.jpeg'),name:'兰州牛肉面',price:8,num:0},
+		          {img:require('../image/Daoxiao-noodles.jpg'),name:'刀削面',price:8,num:0},
+		          {img:require('../image/fried-sauce-noodles.jpg'),name:'炸酱面',price:8,num:0},
+		          {img:require('../image/stewed-noodles.jpg'),name:'烩面',price:8,num:0},
+		          {img:require('../image/tomato-egg-noodles.jpg'),name:'西红柿鸡蛋面',price:8,num:0},
+		          {img:require('../image/Chongqing-small-noodles.jpg'),name:'重庆小面',price:8,num:0},
+		          {img:require('../image/plain-noodle-soup.jpg'),name:'阳春面',price:8,num:0},
+		        ],
 	      	},
 	      	{
-	      		name: 'conjee-component',
 	      		show: false,
-	      		loading: true
+	      		loading: true,
+	      		foodList:[
+              {img:require('../image/lily-almond-gruel.jpg'),name:'百合杏仁粥',price:8,num:0},
+              {img:require('../image/purple-sweet-potato-gruel.jpeg'),name:'紫薯小米粥',price:8,num:0},
+              {img:require('../image/jujube-yam.jpg'),name:'红枣山药粥',price:8,num:0},
+              {img:require('../image/red-bean-millet-gruel.png'),name:'红豆薏米粥',price:8,num:0},
+              {img:require('../image/tremella-lotus-porridge.jpeg'),name:'银耳莲子粥',price:8,num:0},
+              {img:require('../image/sydney-rice-gruel.jpeg'),name:'雪梨小米粥',price:8,num:0},
+            ]
 	      	},
 	      	{
-	      		name: 'drink-component',
 	      		show: false,
-	      		loading: true
+	      		loading: true,
+	      		foodList:[
+              {img:require('../image/cola.jpg'),name:'可乐',price:5,num:0},
+              {img:require('../image/grapefruit-tea.jpg'),name:'柚子茶',price:5,num:0},
+              {img:require('../image/orange-juice.jpg'),name:'橙汁',price:5,num:0},
+              {img:require('../image/syrup-plum.jpg'),name:'酸梅汤',price:5,num:0},
+              {img:require('../image/sprite.jpg'),name:'雪碧',price:5,num:0},
+            ],
 	      	}
-	      ]
+	      ],
 		  }
 	  },
 	  methods:{
@@ -157,11 +163,6 @@
 	  		this.startX=touch.pageX;
 	  		this.startY=touch.pageY;
 	  		this.startDate=+new Date();
-	  	},
-	  	onTouchMove: function(event){
-	  		this.globalID=window.requestAnimationFrame( () => {
-          animation(event);
-        });
 	  	},
 	  	animation: function(event){
 	  		var touch=event.targetTouches[0];
@@ -211,11 +212,17 @@
 	  			}
 	  			$("#content").css({  //滑动动画
 	  				'transform': 'translateX('+(-this.index*640)+'px)',
-	  				'transition': 'transform 0.15s linear' 
-	  			})
+	  				'transition': 'transform 0.25s linear' 
+	  			});
 	  			this.componentState[this.index].show=true;  //调用加载异步组件
 	  		}
 	  		this.slideState="";  //清空滑动状态
+	  	},
+	  	touchcancel:function(){
+				$("#content").css({  //滑动动画
+					'transform': 'translateX('+(-this.index*640)+'px)',
+					'transition': 'transform 0.25s linear' 
+				});
 	  	},
 	  	load:function(){  //异步组件加载完后隐藏loading状态组件
 	  		this.componentState[this.index].loading=false;
@@ -224,7 +231,7 @@
   		  this.index=index;
   			$("#content").css({  //滑动动画
   				'transform': 'translateX('+(-this.index*640)+'px)',
-  				'transition': 'transform 0.15s linear' 
+  				'transition': 'transform 0.25s linear' 
   			})
   			this.componentState[this.index].show=true;  //调用加载异步组件
 	  	},

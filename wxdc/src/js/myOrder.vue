@@ -2,7 +2,9 @@
 	<div id="myOrder" class="container-fluid">
 		<div class="header">
 			<h2 class="myOrder">我的订单：</h2>
-			<h2 class="back"><a href="#" v-on:click="back">返回</a></h2>
+			<h2 class="back">
+				<router-link :to="{path: '/'}">返回</router-link>
+			</h2>
 			<div class="clear"></div>
 		</div>
 		<ul v-if="orderList.length">
@@ -27,9 +29,7 @@ export default{
 		}
 	},
 	methods:{
-		back:function(){
-			this.$emit('back','indexcomponent');
-		}
+		
 	},
 	created:function(){
 		if(typeof(Storage)!=="undefined"){

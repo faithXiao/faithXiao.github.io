@@ -10,7 +10,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="back">返回</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="showOrder">已完成支付</button>
+          <router-link :to="{path: 'myorder'}">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">已完成支付</button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -29,9 +31,6 @@
     methods:{
       back:function(){
         this.$emit('clear');
-      },
-      showOrder:function(){
-        this.$emit('showOrder');
       }
     },
     computed:{
@@ -44,7 +43,10 @@
       $("#money_img").modal({
         show:true
       });
-      $("html,body,#index,#main").css('height','100%');
+      $("html").css({
+        height: $('body').height(),
+        overflow: 'hidden'
+      });
     }
   }
 </script>

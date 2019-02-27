@@ -1,9 +1,9 @@
 <template>
 	<div id="index">
 		<template v-if="showMoneyImg">
-			<money-img-component v-on:clear="clear" v-on:showOrder="showOrder" v-bind:desk="desk" v-bind:money="money"></money-img-component>
+			<money-img-component v-on:clear="clear" v-bind:desk="desk" v-bind:money="money"></money-img-component>
 		</template>
-		<header-component v-on:turn="turn" v-on:showOrder="showOrder" v-bind:desk="desk" v-bind:index="index"></header-component>
+		<header-component v-on:turn="turn" v-bind:desk="desk" v-bind:index="index"></header-component>
 		<div id="content" v-on:touchstart="touchstart" v-on:touchmove="touchmove" v-on:touchend="touchend" v-on:touchcancel="touchcancel">
 			<!--<keep-alive>
 			  <component v-bind:is="current" v-on:sendAdd="sendAdd" v-on:sendMinus="sendMinus"></component>
@@ -240,9 +240,6 @@
 			},
 			clear:function(){
 				window.location.reload();
-			},
-			showOrder:function(){  //调用订单信息组件
-				this.$emit('turn','myordercomponent');
 			}
 	  },
 	  created:function(){

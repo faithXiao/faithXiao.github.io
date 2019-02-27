@@ -1,9 +1,11 @@
 <template>
   <div id="header" class="container-fluid">
     <div>
-      <div id="myOrder" v-on:click="showOrder">
-        <img src="dist/myOrder.png" alt="#">
-        <span>我的订单</span>
+      <div id="myOrder">
+        <router-link :to="{path: 'myorder'}">
+          <img src="dist/myOrder.png" alt="#">
+          <span>我的订单</span>
+        </router-link>
       </div>
   		<h2>欢迎使用微信扫码点餐</h2>
   		<p>当前桌号：{{ desk }}</p>
@@ -38,9 +40,6 @@
     methods:{
       turn:function(index){
         this.$emit('turn',index);
-      },
-      showOrder:function(){
-        this.$emit('showOrder');
       }
     },
     watch:{
@@ -67,11 +66,15 @@ p{
   width: 64px;
   height: 88px;
 }
-#myOrder img{
+#myOrder a{
   display: block;
 }
-#myOrder span{
+#myOrder a img{
   display: block;
+}
+#myOrder a span{
+  display: block;
+  color: black;
   font-size: 1rem;
 }
 </style>

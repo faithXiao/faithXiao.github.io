@@ -23,6 +23,7 @@ body{
   margin-bottom: 75px;
   overflow: hidden;
   touch-action: pan-y;
+  transform: translateX(0px);
 }
 #content>div{
   float: left;
@@ -71,43 +72,43 @@ body{
   padding-top: 0;
   padding-bottom: 0;
 }
-.food-img{
+.food .food-img{
   width: 140px;
 }
-.food>div{
+.food .food-list{
   position: relative;
   padding: .5rem .8rem;
   border: 1px solid #e0e0e0;
   border-top: none;
   height: 121px;
 }
-.food-info{
+.food .food-info{
   margin-left: 0.6rem;
 }
-.food-info>span:nth-of-type(1){
+.food .food-info>span:nth-of-type(1){
   font-size: 1.65rem;
 }
-.food-info>span:nth-of-type(2){
+.food .food-info>span:nth-of-type(2){
   font-size: 1.3rem;
   color: red;
 }
-.food-choose{
+.food .food-choose{
   position: relative;
   top: 69px;
   width: 120px;
 }
-.food-choose span:nth-of-type(1),.food-choose span:nth-of-type(3){
+.food .food-choose span:nth-of-type(1),.food .food-choose span:nth-of-type(3){
   width: 32px;
   height: 32px;
   cursor: pointer;
 }
-.food-choose span:nth-of-type(1){
+.food .food-choose span:nth-of-type(1){
   background-image: url(../../dist/minus.png);
 }
-.food-choose span:nth-of-type(3){
+.food .food-choose span:nth-of-type(3){
   background-image: url(../../dist/add.png);
 }
-.food-choose span:nth-of-type(2){
+.food .food-choose span:nth-of-type(2){
   position: absolute;
   left: 0;
   right: 0;

@@ -30,6 +30,9 @@
       this.food_list=this.foodList;
       this.$emit('load');
     },
+    mounted:function(){
+      this.$emit('foodComponentMounted');
+    },
     methods:{
       add:function(index){
         this.food_list[index].num++;

@@ -5,21 +5,18 @@
 		</template>
 		<header-component v-on:turn="turn" v-bind:desk="desk" v-bind:index="index"></header-component>
 		<div id="content" v-on:touchstart="touchstart" v-on:touchmove="touchmove" v-on:touchend="touchend" v-on:touchcancel="touchcancel">
-			<!--<keep-alive>
-			  <component v-bind:is="current" v-on:sendAdd="sendAdd" v-on:sendMinus="sendMinus"></component>
-			</keep-alive>-->
-
 			<template v-for="componentList in componentState">
 				<template v-if="componentList.loading">
 					<loading-component></loading-component>
 				</template>
-				<template v-if="componentList.show">
-					<keep-alive>
-						<food-component v-bind:foodList="componentList.foodList" v-on:add="add" v-on:minus="minus" v-on:load="load"></food-component>
-					</keep-alive>
-				</template>
+				<div class="foodListSilde">
+					<template v-if="componentList.show">
+						<keep-alive>
+							<food-component v-bind:foodList="componentList.foodList" v-on:add="add" v-on:minus="minus" v-on:load="load" v-on:foodComponentMounted="foodComponentMounted"></food-component>
+						</keep-alive>
+					</template>
+				</div>
 			</template>
-
 			<div class="clearfix"></div>
 		</div>
 		<pay-component v-on:showImg="showImg" v-bind:orderInfo="orderInfo" v-bind:money="money" v-bind:desk="desk"></pay-component>
@@ -214,7 +211,7 @@
 	  				'transform': 'translateX('+(-this.index*640)+'px)',
 	  				'transition': 'transform 0.25s linear' 
 	  			});
-	  			this.componentState[this.index].show=true;  //调用加载异步组件
+	  			this.componentState[this.index].show=true;  //切换显示组件
 	  		}
 	  		this.slideState="";  //清空滑动状态
 	  	},
@@ -224,8 +221,24 @@
 					'transition': 'transform 0.25s linear' 
 				});
 	  	},
-	  	load:function(){  //异步组件加载完后隐藏loading状态组件
+	  	load:function(){  //切换组件完毕后隐藏loading状态组件
 	  		this.componentState[this.index].loading=false;
+	  	},
+	  	foodComponentMounted:function(){
+	  		var i=0;
+	  		var _this=this;
+  			$(".foodListSilde:eq("+this.index+") .food-list").each(function(){
+		  		$(this).css({  //滑动动画
+						'transform': 'translateX('+(640+i)+'px)', 
+					});
+					setTimeout(()=>{
+		  		  $(this).css({  //滑动动画
+						  'transform': 'translateX('+0+'px)',
+						  'transition': 'transform 0.25s linear' 
+					  });
+	  		  },50);
+					i+=40;
+	  		});
 	  	},
 	  	turn:function(index){  //组件切换
   		  this.index=index;
@@ -233,7 +246,9 @@
   				'transform': 'translateX('+(-this.index*640)+'px)',
   				'transition': 'transform 0.25s linear' 
   			})
-  			this.componentState[this.index].show=true;  //调用加载异步组件
+  			setTimeout(()=>{
+  				this.componentState[this.index].show=true;  //切换显示组件
+  			},250);
 	  	},
 	  	showImg:function () {  //图片金额二维码组件显示隐藏
 				this.showMoneyImg = !this.showMoneyImg;
@@ -243,7 +258,7 @@
 			}
 	  },
 	  created:function(){
-	  	this.componentState[0].show=true;  //初始化加载第一个组件
+	  	this.componentState[0].show=true;  //初始化显示第一个组件
 	  },
 	}
 </script>

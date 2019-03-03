@@ -211,9 +211,7 @@
 	  				'transform': 'translateX('+(-this.index*640)+'px)',
 	  				'transition': 'transform 0.25s linear' 
 	  			});
-		  		setTimeout(()=>{
-	  				this.componentState[this.index].show=true;  //切换显示组件
-	  			},250);
+	  			this.componentState[this.index].show=true;  //切换显示组件
 	  		}
 	  		this.slideState="";  //清空滑动状态
 	  	},
@@ -228,18 +226,19 @@
 	  	},
 	  	foodComponentMounted:function(){
 	  		var i=0;
-        $(".foodListSilde:eq("+this.index+") .food-list").each(function(){
-          $(this).css({  //滑动动画
-            'transform': 'translateX('+(640+i)+'px)', 
-          });
-          setTimeout(()=>{
-            $(this).css({  //滑动动画
-              'transform': 'translateX('+0+'px)',
-              'transition': 'transform 0.25s linear' 
-            });
-          },50);
-          i+=40;
-        });
+	  		var _this=this;
+  			$(".foodListSilde:eq("+this.index+") .food-list").each(function(){
+		  		$(this).css({  //滑动动画
+						'transform': 'translateX('+(640+i)+'px)', 
+					});
+					setTimeout(()=>{
+		  		  $(this).css({  //滑动动画
+						  'transform': 'translateX('+0+'px)',
+						  'transition': 'transform 0.25s linear' 
+					  });
+	  		  },50);
+					i+=40;
+	  		});
 	  	},
 	  	turn:function(index){  //组件切换
   		  this.index=index;

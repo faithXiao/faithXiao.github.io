@@ -261,6 +261,7 @@
 	  },
 	  created:function(){
 	  	this.componentState[0].show=true;  //初始化显示第一个组件
+	  	console.log('6');
 	  },
 	}
 </script>

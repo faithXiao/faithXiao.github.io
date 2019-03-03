@@ -228,6 +228,7 @@
 	  	},
 	  	foodComponentMounted:function(){
 	  		var i=0;
+	  		console.log('gg');
         $(".foodListSilde:eq("+this.index+") .food-list").each(function(){
           $(this).css({  //滑动动画
             'transform': 'translateX('+(640+i)+'px)', 

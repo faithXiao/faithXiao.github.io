@@ -228,7 +228,6 @@
 	  	},
 	  	foodComponentMounted:function(){
 	  		var i=0;
-	  		console.log('gg');
         $(".foodListSilde:eq("+this.index+") .food-list").each(function(){
           $(this).css({  //滑动动画
             'transform': 'translateX('+(640+i)+'px)', 
@@ -261,7 +260,6 @@
 	  },
 	  created:function(){
 	  	this.componentState[0].show=true;  //初始化显示第一个组件
-	  	console.log('6');
 	  },
 	}
 </script>

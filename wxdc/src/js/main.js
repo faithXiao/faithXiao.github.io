@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 let router = new VueRouter({
-	mode: 'history',
+	mode: 'hash',
 	base: '/wxdc',
 	routes: [
 	  {

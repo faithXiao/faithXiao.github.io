@@ -30,20 +30,12 @@ body{
 }
 </style>
 <body style="position: relative;">
-<audio controls autoplay loop id="music" style="display: block; position: absolute; left: 0; right: 0; bottom: 30%; margin: auto; width: 250px; z-index: 10">
-  <source src="Happy-Birthday.mp3" type="audio/mpeg">
-</audio>
-<div class="container-fluid">
-
-</div>
-
+  <div class="container-fluid"></div>
+</body>
 <script>
 var width=document.body.clientWidth;
 var height=window.innerHeight;
 document.getElementsByClassName('container-fluid')[0].style.height=height+'px';
-document.getElementById('music').onclick=function(e){
-	e.stopPropagation();
-};
 function create_snow(){
 	var left_start=Math.random()*width+'px';
 	var left_end=Math.random()*width+'px';
@@ -59,9 +51,6 @@ function create_snow(){
 		});
 	});
 }
-window.onload=function(){
-	document.getElementById('music').play();
-}
 $(function(){
 	var flag=true;
   var time=setInterval('create_snow()',150);
@@ -76,5 +65,4 @@ $(function(){
   });
 });
 </script>
-</body>
 </html>

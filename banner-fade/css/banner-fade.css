@@ -1,0 +1,98 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+.banner-container{
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+}
+.banner-img{
+	position: relative;
+	width: 100%;
+}
+.banner-img img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	z-index: 0;
+	opacity: 0;
+}
+.banner-img img:nth-of-type(1){
+	position: relative;  /*防止所有图片决对定位使父容器高度为0*/
+	z-index: 1;
+	opacity: 1;
+}
+.banner-prev,.banner-next{
+	display: block;
+	width: 50px; 
+	height: 100px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	color: white;
+	background-color: #646464;
+	opacity: 0;
+	z-index: 10;
+	font-size: 30px;
+	text-align: center;
+	line-height: 100px;
+	cursor: pointer;
+}
+.banner-prev{
+	left: 0;
+}
+.banner-next{
+	right: 0;
+}
+.banner-container:hover .banner-prev,.banner-container:hover .banner-next{
+	opacity: 0.3;
+}
+.banner-container .banner-prev:hover,.banner-container .banner-next:hover{
+	opacity: 0.6;
+}
+.banner-nav{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 5%; 
+	margin: auto; 
+	width: 80%;
+	height: 6px;
+	z-index: 10;
+}
+.banner-nav span{
+	display: block;
+	width: 25px; 
+	height: 6px;
+	margin: 0 5px 0 5px;
+	box-sizing: border-box;
+	border: 1px solid #000000;
+	border-radius: 20px;
+	background-color: #c8c8c8;
+	opacity: 0.5; 
+	cursor: pointer; 
+	text-align: center;
+}
+.banner-nav span:hover{
+	background-color: #82ff6b;
+}
+.banner-nav span.active{
+	background-color: #00ffff;
+}
+@-webkit-keyframes show{
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+@-webkit-keyframes hide{
+	from {opacity: 1;}
+	to {opacity: 0;}
+}

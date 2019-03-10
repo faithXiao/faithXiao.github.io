@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
   export default{
-    props:['foodList'],
+    props:['foodList','index'],
     data(){
       return{
         food_list: null
@@ -31,7 +31,19 @@
       this.$emit('load');
     },
     mounted:function(){
-      this.$emit('foodComponentMounted');
+      var i=0;
+      $(".foodListSilde:eq("+this.index+") .food-list").each(function(){
+        $(this).css({
+          'transform': 'translateX('+(640+i)+'px)', 
+        });
+        setTimeout(()=>{
+          $(this).css({  //滑动动画
+            'transform': 'translateX('+0+'px)',
+            'transition': 'transform 0.25s linear' 
+          });
+        },50);
+        i+=50;
+      });
     },
     methods:{
       add:function(index){

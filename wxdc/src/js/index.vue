@@ -12,7 +12,7 @@
 				<div class="foodListSilde">
 					<template v-if="componentList.show">
 						<keep-alive>
-							<food-component v-bind:foodList="componentList.foodList" v-on:add="add" v-on:minus="minus" v-on:load="load" v-on:foodComponentMounted="foodComponentMounted"></food-component>
+							<food-component v-bind:foodList="componentList.foodList" v-bind:index="index" v-on:add="add" v-on:minus="minus" v-on:load="load"></food-component>
 						</keep-alive>
 					</template>
 				</div>
@@ -223,22 +223,6 @@
 	  	},
 	  	load:function(){  //切换组件完毕后隐藏loading状态组件
 	  		this.componentState[this.index].loading=false;
-	  	},
-	  	foodComponentMounted:function(){
-	  		var i=0;
-	  		var _this=this;
-  			$(".foodListSilde:eq("+this.index+") .food-list").each(function(){
-		  		$(this).css({  //滑动动画
-						'transform': 'translateX('+(640+i)+'px)', 
-					});
-					setTimeout(()=>{
-		  		  $(this).css({  //滑动动画
-						  'transform': 'translateX('+0+'px)',
-						  'transition': 'transform 0.25s linear' 
-					  });
-	  		  },50);
-					i+=40;
-	  		});
 	  	},
 	  	turn:function(index){  //组件切换
   		  this.index=index;

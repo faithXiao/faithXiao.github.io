@@ -1,7 +1,7 @@
 <template>
-  <div class="modal fade container-fluid" id="money_img" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+  <div id="modal">
+    <div id="modal-content">
+      <div>
         <div class="modal-header">
           <h3 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;长按识别付款二维码即可完成支付</h3>
         </div>
@@ -40,35 +40,43 @@
       }*/
     },
     mounted:function(){
-      $("#money_img").modal({
-        show:true
-      });
-      $("html").css({
-        height: $('body').height(),
-        overflow: 'hidden'
-      });
+      document.getElementById('modal-content').style.animation='modelShow .8s 1 forwards';
     }
   }
 </script>
 
 <style scoped>
-#money_img img{
+#modal{
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: #00000080;
+}
+#modal-content{
+  display: flex;
+  margin: auto;
+  border-radius: .5rem;
+  width: 90%;
+  height: 100%;
+}
+#modal-content>div{
+  margin: auto;
+  background-color: white;
+}
+#modal-content img{
   display: block;
   width: 90%;
   margin: 0 auto;
 }
-.modal-dialog{
-  max-width: 100%;
-  margin: .5rem;
-}
-.modal-content{
-  border-radius: .6rem;
-}
-.modal-footer button{
+#modal-content button{
+  display: block;
+  float: right;
   font-size: 1.65rem;
-}
-.close{
-  font-size: 2.6rem;
-  line-height: 35px;
 }
 </style>

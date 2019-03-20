@@ -52,7 +52,7 @@ let store = new Vuex.Store({
 	}
 }) 
 let router = new VueRouter({
-	mode: 'hash',
+	mode: 'history',
 	base: '/',
 	routes: [
 	  {

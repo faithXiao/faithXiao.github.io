@@ -2,7 +2,7 @@
 	<div id="myOrder" class="container-fluid">
 		<div class="header">
 			<h2 class="myOrder">我的订单：</h2>
-			<h2 class="back">
+			<h2 class="back" v-on:click="clear">
 				<router-link :to="{path: '/'}">返回</router-link>
 			</h2>
 			<div class="clear"></div>
@@ -29,7 +29,10 @@ export default{
 		}
 	},
 	methods:{
-		
+		clear () {
+			this.$store.state.orderInfo=[];
+			this.$store.state.money=0;
+		}
 	},
 	created:function(){
 		if(typeof(Storage)!=="undefined"){

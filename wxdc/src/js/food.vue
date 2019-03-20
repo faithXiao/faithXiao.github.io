@@ -46,16 +46,24 @@
       });
     },
     methods:{
-      add:function(index){
+      add (index) {
         this.food_list[index].num++;
-        this.$emit('add',this.food_list[index].name,this.food_list[index].num,this.food_list[index].price);
-      },
-      minus:function(index){
-        if(this.food_list[index].num>0){
-          this.food_list[index].num--;
-          this.$emit('minus',this.food_list[index].name,this.food_list[index].price)
+        var obj = {
+          name: this.food_list[index].name,
+          num: this.food_list[index].num,
+          price: this.food_list[index].price
         }
+        this.$store.commit('increment', obj);
       },
+      minus (index) {
+        this.food_list[index].num--;
+        var obj={
+          name: this.food_list[index].name,
+          num: this.food_list[index].num,
+          price: this.food_list[index].price            
+        }
+        this.$store.commit('decrement', obj);
+      }
     }
   }
 </script>

@@ -12,14 +12,16 @@
 				<div class="foodListSilde">
 					<template v-if="componentList.show">
 						<keep-alive>
-							<food-component v-bind:foodList="componentList.foodList" v-bind:index="index" v-on:add="add" v-on:minus="minus" v-on:load="load"></food-component>
+							<!--<food-component v-bind:foodList="componentList.foodList" v-bind:index="index" v-on:add="add" v-on:minus="minus" v-on:load="load"></food-component>-->
+							<food-component v-bind:foodList="componentList.foodList" v-bind:index="index" v-on:load="load"></food-component>
 						</keep-alive>
 					</template>
 				</div>
 			</template>
 			<div class="clearfix"></div>
 		</div>
-		<pay-component v-on:showImg="showImg" v-bind:orderInfo="orderInfo" v-bind:money="money" v-bind:desk="desk"></pay-component>
+		<!--<pay-component v-on:showImg="showImg" v-bind:orderInfo="orderInfo" v-bind:money="money" v-bind:desk="desk"></pay-component>-->
+		<pay-component v-on:showImg="showImg" v-bind:desk="desk"></pay-component>
   </div>
 </template>
 
@@ -47,9 +49,9 @@
 		},
 	  data(){
 		  return{
-		  	orderInfo: [],  //点餐信息数组
+		  	//orderInfo: [],  //点餐信息数组
 		  	desk: '1',  //桌号
-		  	money: 0,  //初始化金额
+		  	//money: 0,  //初始化金额
 		  	showMoneyImg: false,  //金额二维码显示隐藏
 		  	index: 0,  //初始组件位置
 	      startX: 0,  //X，Y坐标值
@@ -116,7 +118,7 @@
 		  }
 	  },
 	  methods:{
-	  	add:function(name,num,price){
+	  	/*add:function(name,num,price){
 	  		this.money=0;
 	  		if(this.orderInfo.length==0){
 	  			this.orderInfo.push({food_name:name,food_num:num,food_price:price});
@@ -152,7 +154,7 @@
 	  		for(let i=0; i<this.orderInfo.length; i++){
 	  			this.money+=this.orderInfo[i].food_num*this.orderInfo[i].food_price
 	  		}
-	  	},
+	  	},*/
 	  	touchstart:function(event){
 	  		var touch=event.targetTouches[0];
 	  		this.endX=0;

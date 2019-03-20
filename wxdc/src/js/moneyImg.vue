@@ -61,12 +61,12 @@
 #modal-content{
   display: flex;
   margin: auto;
-  border-radius: .5rem;
   width: 90%;
   height: 100%;
 }
 #modal-content>div{
   margin: auto;
+  border-radius: .5rem;
   background-color: white;
 }
 #modal-content img{

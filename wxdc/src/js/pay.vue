@@ -2,7 +2,7 @@
 	<div id="footer" class="container-fluid">
 		<div id="pay" class="row">
 			<div class="col-8">
-				<span v-if="_num">数量：{{ _num }}个&nbsp;&nbsp;&nbsp;金额：{{ money }}￥</span>
+				<span v-if="_num">数量：{{ _num }}个&nbsp;&nbsp;&nbsp;金额：{{ this.$store.state.money }}￥</span>
 			</div>
 			<div class="col-4">
 				<button class="btn btn-primary" v-on:click="order">去支付</button>
@@ -13,26 +13,27 @@
 
 <script type="text/javascript">
 export default{
-	props:['orderInfo','money','desk'],
+	//props:['orderInfo','money','desk'],
+	props:['desk'],
 	data(){
 		return{
 			num:0,
-			money:this.money
+			//money: this.money
 		}
 	},
 	computed:{
 		_num:function(){
 			let i;
 			this.num=0;
-			for(i=0; i<this.orderInfo.length; i++){
-				this.num+=this.orderInfo[i].food_num
+			for(i=0; i<this.$store.state.orderInfo.length; i++){
+				this.num+=this.$store.state.orderInfo[i].food_num
 			}
 			return this.num
 		},
 	},
 	methods:{
 		order:function(){
-			if(this.orderInfo.length==0){
+			if(this.$store.state.orderInfo.length==0){
 				alert("未选择所需商品！");
 			}else{
 				var date=new Date();
@@ -67,13 +68,13 @@ export default{
 					s=s.toString();
 				}
 				var orderInfo='';
-				for(var i=0; i<this.orderInfo.length; i++){
-					orderInfo+=this.orderInfo[i].food_name+' x'+(this.orderInfo[i].food_num).toString()+', ';
+				for(var i=0; i<this.$store.state.orderInfo.length; i++){
+					orderInfo+=this.$store.state.orderInfo[i].food_name+' x'+(this.$store.state.orderInfo[i].food_num).toString()+', ';
 				}
 				var order={
 					orderId: this.desk+"_"+m+d+h+f+s,
 					orderInfo: orderInfo,
-					orderMoney: this.money,
+					orderMoney: this.$store.state.money,
 					orderTime: h+':'+f+':'+s
 				}
 		    this.$emit('showImg');
